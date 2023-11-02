@@ -5,6 +5,7 @@ module base
 import uuid
 from datetime import datetime
 
+
 class BaseModel:
     def __init__(self):
         self.id = str(uuid.uuid4())
@@ -27,4 +28,3 @@ class BaseModel:
             'updated_at': self.updated_at.isoformat(),
             **self.__dict__
         }
-
