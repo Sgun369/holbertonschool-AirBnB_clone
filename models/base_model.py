@@ -9,7 +9,7 @@ from datetime import datetime
 
 class BaseModel:
     """
-    BaseModel class: Represents a base model with common attributes and methods.
+    BaseModel class: Represents a base model with common attributes and methods
     """
 
     def __init__(self):
