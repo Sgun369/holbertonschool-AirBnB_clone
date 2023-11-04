@@ -42,12 +42,8 @@ class BaseModel:
         Returns:
             dict: A dictionary containing the object's attributes and metadata.
         """
-
-        class_name = self.__class__.__name__
-        return {
-            '__class__': class_name,
-            'id': self.id,
-            'created_at': self.created_at.isoformat(),
-            'updated_at': self.updated_at.isoformat(),
-            **self.__dict__
-        }
+        new_dict = self.__dict__.copy()
+        new_dict["__class__"] = self.__class__.__name__
+        new_dict["created_at"] = self.created_at.isoformat()
+        new_dict["updated_at"] = self.updated_at.isoformat()
+        return new_dict
