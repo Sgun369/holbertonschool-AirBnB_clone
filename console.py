@@ -38,7 +38,6 @@ class HBNBCommand(cmd.Cmd):
             print(eval(arg)().id)
             storage.save()
 
-
     def do_show(self, arg):
         argl = parse(arg)
         objdict = storage.all()
@@ -48,10 +47,10 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(argl) < 2:
             print("** instance id missing **")
-        elif "{}.{}".format(argl[0],argl[1]) not in objdict:
+        elif "{}.{}".format(argl[0], argl[1]) not in objdict:
             print("** no instance found **")
         else:
-            print(objdict["{}.{}".format(argl[0],argl[1])])
+            print(objdict["{}.{}".format(argl[0], argl[1])])
 
     def do_destroy(self, arg):
         argl = parse(arg)
@@ -62,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(argl) < 2:
             print("** instance id missing **")
-        elif "{}.{}".format(argl[0],argl[1]) not in objdict:
+        elif "{}.{}".format(argl[0], argl[1]) not in objdict:
             print("** no instance found **")
         else:
             del objdict["{}.{}".format(argl[0], argl[1])]
@@ -71,14 +70,14 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         argl = parse(arg)
         if len(argl) > 0 and argl[0] not in HBNBCommand.__classes:
-                print("** class doesn't exist **")
+            print("** class doesn't exist **")
         else:
             all_objs = storage.all()
             for obj_id in all_objs.keys():
                 obj = all_objs[obj_id]
                 print(obj)
 
-    def do_update(self,arg):
+    def do_update(self, arg):
         argl = parse(arg)
         objdict = storage.all()
         if len(argl) == 0:
@@ -87,20 +86,17 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(argl) < 2:
             print("** instance id missing **")
-        elif "{}.{}".format(argl[0],argl[1]) not in objdict:
+        elif "{}.{}".format(argl[0], argl[1]) not in objdict:
             print("** no instance found **")
         elif len(argl) < 3:
             print("** attribute name missing **")
         elif len(argl) < 4:
             print("** value missing **")
         else:
-            key = "{}.{}".format(argl[0],argl[1])
+            key = "{}.{}".format(argl[0], argl[1])
             instance = objdict[key]
             setattr(instance, argl[2], argl[3].strip('"'))
             storage.save()
-
-
-
 
 
 def parse(arg):
