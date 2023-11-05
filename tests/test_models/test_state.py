@@ -1,6 +1,7 @@
 import unittest
 from models.state import State
 
+
 class TestState(unittest.TestCase):
     def test_state_name_default_value(self):
         """Test that the default value of the state name is an empty string."""
@@ -12,6 +13,7 @@ class TestState(unittest.TestCase):
         state = State()
         state.name = "California"
         self.assertEqual(state.name, "California")
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,6 +1,7 @@
 import unittest
 from models.review import Review
 
+
 class TestReview(unittest.TestCase):
     def setUp(self):
         """Set up the test environment."""
@@ -17,6 +18,7 @@ class TestReview(unittest.TestCase):
     def test_text_default_value(self):
         """Test that the default value of text is an empty string."""
         self.assertEqual(self.review.text, "")
+
 
 if __name__ == '__main__':
     unittest.main()
