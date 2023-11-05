@@ -42,6 +42,7 @@ class HBNBCommand(cmd.Cmd):
         print("Quit command to exit the program\n")
 
     def do_create(self, arg=None):
+        """Create an instance of class"""
         if not arg:
             print("** class name missing **")
         elif arg not in HBNBCommand.__classes:
@@ -51,6 +52,7 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_show(self, arg):
+        """show instance based on class name and ID"""
         argl = parse(arg)
         objdict = storage.all()
         if len(argl) == 0:
@@ -65,6 +67,7 @@ class HBNBCommand(cmd.Cmd):
             print(objdict["{}.{}".format(argl[0], argl[1])])
 
     def do_destroy(self, arg):
+        """Destroy an instance based on class name and Id"""
         argl = parse(arg)
         objdict = storage.all()
         if len(argl) == 0:
@@ -80,6 +83,7 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_all(self, arg):
+        """Display all instances based on class name"""
         argl = parse(arg)
         if len(argl) > 0 and argl[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
@@ -90,6 +94,7 @@ class HBNBCommand(cmd.Cmd):
                 print(obj)
 
     def do_update(self, arg):
+        """update an instance attribute"""
         argl = parse(arg)
         objdict = storage.all()
         if len(argl) == 0:
@@ -112,7 +117,7 @@ class HBNBCommand(cmd.Cmd):
 
 
 def parse(arg):
-    'Convert a series arguments to an argument list'
+    """Convert a series arguments to an argument list"""
     return list(map(str, arg.split()))
 
 
