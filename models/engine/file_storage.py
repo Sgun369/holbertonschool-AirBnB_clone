@@ -35,7 +35,7 @@ class FileStorage:
         # Serialize objects to a dictionary
         objdict = {obj: odict[obj].to_dict() for obj in odict.keys()}
         with open(FileStorage.__file_path, "w") as f:
-            json.dump(objdict, f)  # Write the serialized data to the file
+            json.dump(objdict, f, indent=2)  # Write the serialized data to the file
 
     def reload(self):
         """Deserializes the JSON file to instances in __objects."""
