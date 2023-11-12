@@ -15,7 +15,14 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """
         Initializes a new instance of the BaseModel class.
-        It assigns a unique ID, creation time, and update time to the instance.
+        
+        If instantiated with keyword arguments (kwargs), it reconstructs the object 
+        from a dictionary representation. Otherwise, it assigns a unique ID, creation 
+        time, and update time to the instance and adds it to the storage.
+
+        Args:
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
         """
         if kwargs:
             for key, value in kwargs.items():
@@ -38,7 +45,11 @@ class BaseModel:
 
     def save(self):
         """
-        Updates the 'updated_at' attribute with the current datetime.
+        Updates the 'updated_at' attribute with the current datetime and saves the 
+        changes to the storage.
+
+        This method updates the 'updated_at' attribute of the object with the 
+        current datetime and then triggers the storage to save the changes.
         """
         self.updated_at = datetime.now()
         models.storage.save()
@@ -48,7 +59,8 @@ class BaseModel:
         Converts the BaseModel object to a dictionary for serialization.
 
         Returns:
-            dict: A dictionary containing the object's attributes and metadata.
+            dict: A dictionary containing the object's attributes and metadata, 
+            suitable for serialization.
         """
         new_dict = self.__dict__.copy()
         new_dict["__class__"] = self.__class__.__name__
