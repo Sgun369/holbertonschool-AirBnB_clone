@@ -101,6 +101,11 @@ class test_basemodel(unittest.TestCase):
         new = self.value()
         self.assertEqual(type(new.id), str)
 
+    def test_two_ids(self):
+        bm1 = BaseModel()
+        bm2 = BaseModel()
+        self.assertNotEqual(bm1.id, bm2.id)
+
     def test_created_at(self):
         """ Test instance creation time"""
         new = self.value()
