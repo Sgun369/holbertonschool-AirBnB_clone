@@ -47,8 +47,27 @@ class test_basemodel(unittest.TestCase):
         copy = i.to_dict()
         copy.update({1: 2})
         with self.assertRaises(TypeError):
-            new = BaseModel(**copy)
+            BaseModel(**copy)
 
+    def test_init_with_invalid_kwargs(self):
+        """Test that initializing a BaseModel instance
+        with invalid keyword arguments fails correctly."""
+        kwargs = {
+            "id": "invalid-id",
+            "created_at": "invalid-created-at",
+            "updated_at": "invalid-updated-at",
+        }
+
+        with self.assertRaises(Exception):
+            BaseModel(**kwargs)
+
+    def test_init_without_kwargs(self):
+        """Test that initializing a BaseModel instance
+        without keyword arguments works correctly."""
+        base_model = BaseModel()
+        self.assertIsNotNone(base_model.id)
+        self.assertTrue(isinstance(base_model.created_at, datetime.datetime))
+        self.assertTrue(isinstance(base_model.updated_at, datetime.datetime))
     def test_save(self):
         """ Test instance save method"""
         i = self.value()
