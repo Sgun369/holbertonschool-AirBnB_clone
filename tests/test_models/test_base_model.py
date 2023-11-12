@@ -68,6 +68,7 @@ class test_basemodel(unittest.TestCase):
         self.assertIsNotNone(base_model.id)
         self.assertTrue(isinstance(base_model.created_at, datetime.datetime))
         self.assertTrue(isinstance(base_model.updated_at, datetime.datetime))
+
     def test_save(self):
         """ Test instance save method"""
         i = self.value()
